@@ -7,8 +7,7 @@ import json # exporting to files
 
 
 # scraping function
-def hackernews_rss('https://news.ycombinator.com/rss')
-
+def hackernews_rss('https://news.ycombinator.com/rss'):
     try:
         # execute my request, parse the data using XML
         # parser in BS4
