@@ -7,10 +7,10 @@ import json # exporting to files
 def any_rss():
 
     try:
-        URL = ''
-        r = requests.get(URL)
+        feed_url = ''
+        r = requests.get(feed_url)
         soup = BeautifulSoup(r.content, 'html')
-        print(soup.prettify())
+
     except Exception as e:
         print('The scraping job failed. See exception:')
         print(e)
