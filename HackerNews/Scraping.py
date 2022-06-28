@@ -1,18 +1,39 @@
 # Scraping https://news.ycombinator.com/rss
 
-import requests # pulling data
-from bs4 import BeautifulSoup # xml parsing
-import json # exporting to files
+import requests
+from bs4 import BeautifulSoup
+import json
 
+article_list = []
 
+# save function
+def save_function(article_list):
+    with open('articles.txt', 'w') as outfile:
+        json.dump(article_list, outfile)
 
 # scraping function
 def hackernews_rss():
     try:
-        # execute my request, parse the data using XML
-        # parser in BS4
         r = requests.get('https://news.ycombinator.com/rss')
-        return print('The scraping job succeeded: ', r.status_code) # 200 is OK, 404 is Not Found
+        # return print(r.status_code) # Use this cmd to check if you're able to ping the site. 200 is OK, 404 is Not Found
+        soup = BeautifulSoup(r.content, features='xml')
+
+        articles = soup.findAll('item')
+
+        for a in articles:
+            title = a.find('title').text
+            link = a.find('link').text
+            pubDate = a.find('pubDate').text
+
+            article = {
+                'Title':title,
+                'Link':link,
+                'Published':pubDate
+                }
+
+            article_list.append(article)
+        return save_function(article_list)
+
     except Exception as e:
             print('The scraping job failed. See exception:')
             print(e)
