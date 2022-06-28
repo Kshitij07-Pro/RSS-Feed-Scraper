@@ -1,2 +1,3 @@
-# web_scraping_example
-This is a project created to illustrate the basics of web scraping by pulling information from the HackerNews RSS feed.
+# Howdy peeps.
+
+I made this Repository to store all my info about web web scrapping.
