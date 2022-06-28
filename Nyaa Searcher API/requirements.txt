@@ -1,0 +1,2 @@
+autoscraper>=1.1.12
+-U autoscraper flask
