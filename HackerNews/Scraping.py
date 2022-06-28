@@ -7,11 +7,11 @@ import json # exporting to files
 
 
 # scraping function
-def hackernews_rss('https://news.ycombinator.com/rss'):
+def hackernews_rss():
     try:
         # execute my request, parse the data using XML
         # parser in BS4
-        r = requests.get()
+        r = requests.get('https://news.ycombinator.com/rss')
         return print('The scraping job succeeded: ', r.status_code)
     except Exception as e:
             print('The scraping job failed. See exception:')
