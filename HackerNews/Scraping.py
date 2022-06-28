@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
+# declare empty var to append data
 article_list = []
 
 # save function
