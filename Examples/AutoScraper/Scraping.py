@@ -23,3 +23,5 @@ scraper.save('file_path')
 
 # to load
 scraper.load('file_path')
+
+# learn more https://gist.github.com/alirezamika/72083221891eecd991bbc0a2a2467673
