@@ -7,21 +7,15 @@ from autoscraper import AutoScraper
 # random.seed(0)
 
 url = 'https://nyaa.si/?q=Naruto'
-wanted_dict = {
-    'Title': [
-    ],
-    'Link': ['https://nyaa.si/download/1547019.torrent'],
-    'Size': ['196.2 MiB']
-}
+wanted_list = ["[YakuboEncodes] Boruto - Naruto Next Generations - 255 [1080p 10bit][x265 HEVC][Multi-Subs]", "https://nyaa.si/download/1547052.torrent", "22", "0", "196.2 MiB"]
 
 scraper = AutoScraper()
+scraper.build(url, wanted_list)
 
-scraper.build(url=url, wanter_dict=wanted_dict)
-
-# scraper.get_result_exact(url, grouped=True)
 scraper.get_result_similar(url, grouped=True)
 
-scraper.keep_rules(['rule_xxxx', 'rule_xxyy', 'rule_yyyy'])
+scraper.set_rule_aliases = ({"rule_c9xn": "Title", "rule_v6ms": "Torrent Link", "rule_gyyj": "Seeders", "rule_v6gu": "Leechers", "rule_n0ey": "Size"})
+scraper.keep_rules(['rule_c9xn', 'rule_v6ms', 'rule_gyyj', 'rule_v6gu', 'rule_n0ey'])
 
 # to save data
-scraper.save('path')
+scraper.save('./Nyaa-search-result.txt')
