@@ -18,4 +18,4 @@ scraper.set_rule_aliases = ({"rule_y0cq": "Title", "rule_65zt": "Torrent Link", 
 scraper.keep_rules(['rule_y0cq', 'rule_65zt', 'rule_4wn6', 'rule_isig', 'rule_3d0m'])
 
 # to save data
-scraper.save('./Nyaa-search-result.txt')
+scraper.save('Nyaa-search-result.txt')
