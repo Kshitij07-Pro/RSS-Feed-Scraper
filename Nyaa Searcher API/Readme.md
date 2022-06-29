@@ -1,1 +1,1 @@
-By running this code, the API server will be up listening on port 8080. So let’s test our API by opening http://localhost:8080/?q=Naruto in our browser:
+By running [this](https://github.com/Kshitij07-Pro/Web-Scraper/blob/main/Nyaa%20Searcher%20API/API_Server.py) code, the API server will be up listening on port 8080. So to use the API open http://localhost:8080/?q=Naruto in browser:
