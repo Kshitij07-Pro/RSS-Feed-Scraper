@@ -1,25 +1,21 @@
+# First, we are going to create a smart scraper to fetch data from Nyaa’s search results page.
+
 from autoscraper import AutoScraper
-from flask import Flask, request
+
+# if you want to have same rule ids for each run
+import random
+random.seed(0)
+
+url = 'https://nyaa.si/?q=Naruto'
+wanted_list = ["[YakuboEncodes] Boruto - Naruto Next Generations - 255 [1080p 10bit][x265 HEVC][Multi-Subs]", "https://nyaa.si/download/1547052.torrent", "22", "0", "196.2 MiB"]
 
 scraper = AutoScraper()
-scraper.load('path')
-app = Flask(__name__)
+scraper.build(url, wanted_list)
 
-def get_result(search_query):
-    url = 'https://www.nyaa.si/?q=%s' % search_query
-    result = scraper.get_result_similar(url, group_by_alias=True)
-    return _aggregate_result(result)
+scraper.get_result_similar(url, grouped=True)
 
-def _aggregate_result(result):
-    final_result = []
-    for i in range(len(list(result.values())[0])):
-        final_result.append({alias: result[alias][i] for alias in result})
-    return final_result
+scraper.set_rule_aliases = ({"rule_y0cq": "Title", "rule_65zt": "Torrent Link", "rule_4wn6": "Seeders", "rule_isig": "Leechers", "rule_3d0m": "Size"})
+scraper.keep_rules(['rule_y0cq', 'rule_65zt', 'rule_4wn6', 'rule_isig', 'rule_3d0m'])
 
-@app.route('/', methods=['GET'])
-def search_api():
-    query = request.args.get('q')
-    return dict(result=get_result(query))
-
-if __name__ == '__main__':
-    app.run(port=8080, host='0.0.0.0')
+# to save data
+scraper.save('Nyaa-search-result.txt')
